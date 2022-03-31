@@ -32,7 +32,7 @@ public class MatrixUi extends JFrame{
         this.al = al;
         this.visible = visible;
         setVisible(visible);
-        setLocationRelativeTo(null);
+      
         setSize(an,al);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
