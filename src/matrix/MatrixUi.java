@@ -44,12 +44,11 @@ public class MatrixUi extends JFrame{
         
         JLabel label1 = new JLabel();
         label1.setText(name);
-        label1.setFont(new java.awt.Font("Arial Black",5, 40));
-        label1.setForeground(new java.awt.Color( 37, 83, 27 ));
-        label1.setBounds(210, -150, 500, 500);
+        label1.setFont(new java.awt.Font("Arial Black",4, 40));
+        label1.setBounds(150, -150, 500, 500);
         add(label1);
         
-        getContentPane().setBackground(new java.awt.Color(  102, 139, 118 ));
+        getContentPane().setBackground(new java.awt.Color( 145, 15, 82 ));
         getContentPane().setLayout(null);
     }
     
