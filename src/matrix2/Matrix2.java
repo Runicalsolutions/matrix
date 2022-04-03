@@ -53,7 +53,7 @@ public class Matrix2 extends javax.swing.JFrame {
         setTitle("Matrix 2.0");
         setPreferredSize(new java.awt.Dimension(800, 650));
 
-        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel1.setBackground(new java.awt.Color(13, 156,171));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true), "ICO FES"));
 
         jLabel1.setText("Insertar el numero de incognitas:");
