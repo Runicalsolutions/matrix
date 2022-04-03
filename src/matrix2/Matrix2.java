@@ -326,4 +326,5 @@ public class Matrix2 extends javax.swing.JFrame {
         }//fin bucle i
         return r; 
     }
+    //a ver si jala
 }
