@@ -8,6 +8,17 @@ public class Matrix2 extends javax.swing.JFrame {
     int n;
     DefaultTableModel modelo = new DefaultTableModel();
     Boolean ban = false;
+    
+
+    public int getN() {
+        return n;
+    }
+
+    public void setN(int n) {
+        this.n = n;
+    }
+    
+    
    
     /**
      * Creates new form Matrix2
@@ -76,6 +87,11 @@ public class Matrix2 extends javax.swing.JFrame {
         jButton2.setText("Limpiar");
 
         jButton3.setText("Resuelve el sistema");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -149,7 +165,11 @@ public class Matrix2 extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         try {
-            n=Integer.parseInt(jTextFieldN.getText());
+            
+            this.setN(Integer.parseInt(jTextFieldN.getText()));
+            n = this.getN();
+            
+            
             if (n<=1) {
                 throw new Exception("El numero de incognitas no es suficiente para hacer la matriz escalonada");
                 
@@ -174,6 +194,40 @@ public class Matrix2 extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        
+        try {
+            
+            int n = this.getN();
+            double m[][] = new double[n][n]; // para almacenar los coeficientes de la matriz aumentada
+            double r[] = new double[n]; 
+            
+            for (int i = 0; i < n; i++) {
+                
+                for (int j = 0; j < n; j++) {
+                    m[i][j] = Double.parseDouble(String.valueOf(jTable.getValueAt(i, j)));
+                    
+                }
+                r[i] = Double.parseDouble(String.valueOf(jTable.getValueAt(i, n)));
+                
+            
+            }
+            
+            r = this.resolver(m, r);
+            
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "error en la lectura de datos");
+        }
+        
+        
+            
+        
+        
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -223,4 +277,53 @@ public class Matrix2 extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea;
     private javax.swing.JTextField jTextFieldN;
     // End of variables declaration//GEN-END:variables
+
+    private double[] resolver(double[][] m, double[] r) {
+        // recuerde que el metodo de Gauss Jordan trabaja con la idea de convertir la matriz aumentada en la matriz identidad
+        int n = this.getN();
+        for (int i = 0; i < n; i++) {
+            double d, c = 0;
+            d = m[i][i];// seleccionamos el pivote
+            jTextArea.append(Double.toString(1 / d) + "*fila" + (i + 1) + "\n");// muesra en el area de texto el pivote seleccionado
+            for (int j = 0; j < n; j++) {// pasamos a convertir en 1 al pivote seleionado
+                m[i][j] = ((m[i][j]) / d);
+            }
+            r[i] = ((r[i]) / d);
+
+            // paso a mostrar las opraciones realizadas en la matriz aumentada
+            for (int j = 0; j < n; j++) {
+
+                for (int k = 0; k < n; k++) {
+                    jTextArea.append(Double.toString(m[j][k]) + "\t");
+                }
+                jTextArea.append("|\t" + Double.toString(r[j]) + "\n");
+            }
+            jTextArea.append("\n\n");// fin paso a motrar las opraciones realizadas en la matriz aumentada
+
+            for (int x = 0; x < n; x++) {
+                if (i != x) {
+                    c = m[x][i];
+                    jTextArea.append("-" + Double.toString(c) + " * fila" + (i + 1) + "+ fila" + (x + 1) + "\n");// mustra en pantalla las opraciones que se realizaran por fila
+                    for (int y = 0; y < n; y++) {// se hace cero a todos los elemntos de la colunma que no sean el pivote
+                        m[x][y] = m[x][y] - c * m[i][y];
+
+                    }
+                    r[x] = r[x] - c * r[i];
+
+                    // paso a mostrar las opraciones realizadas en la matriz aumentada
+                    for (int j = 0; j < n; j++) {
+
+                        for (int k = 0; k < n; k++) {
+                            jTextArea.append(Double.toString(m[j][k]) + "\t");
+                        }
+                        jTextArea.append("|\t" + Double.toString(r[j]) + "\n");
+                    }
+                    jTextArea.append("\n\n");// fin paso a motrar las opraciones realizadas en la matriz aumentada
+
+                }// fin if (i != x)
+            }// fin for (int x = 0; x <= r.length - 1; x++)
+
+        }//fin bucle i
+        return r; 
+    }
 }
