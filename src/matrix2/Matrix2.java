@@ -201,7 +201,9 @@ public class Matrix2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldNActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        
+        //boton que genera la tabla para introducir valores
+        
         try {
             
             this.setN(Integer.parseInt(jTextFieldN.getText()));
@@ -234,7 +236,7 @@ public class Matrix2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+     //boton que imprime el resultado de la matriz
         
         try {
             
@@ -272,11 +274,15 @@ public class Matrix2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        //boton que limpia resultados anteriores
+
+// TODO add your handling code here:
         jTextArea.setText("");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        //cierra el programa
+
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -333,13 +339,13 @@ public class Matrix2 extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private double[] resolver(double[][] m, double[] r) {
-        // recuerde que el metodo de Gauss Jordan trabaja con la idea de convertir la matriz aumentada en la matriz identidad
+        // recordar que el metodo de Gauss Jordan trabaja con la idea de convertir la matriz aumentada en la matriz identidad
         int n = this.getN();
         for (int i = 0; i < n; i++) {
             double d, c = 0;
-            d = m[i][i];// seleccionamos el pivote
-            jTextArea.append(Double.toString(1 / d) + "*fila" + (i + 1) + "\n");// muesra en el area de texto el pivote seleccionado
-            for (int j = 0; j < n; j++) {// pasamos a convertir en 1 al pivote seleionado
+            d = m[i][i];// seleccionamos el valor
+            jTextArea.append(Double.toString(1 / d) + "*fila" + (i + 1) + "\n");// muesra en el area de texto el valor seleccionado
+            for (int j = 0; j < n; j++) {// pasamos a convertir en 1 al valor seleccionado
                 m[i][j] = ((m[i][j]) / d);
             }
             r[i] = ((r[i]) / d);
